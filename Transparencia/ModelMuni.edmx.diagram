@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="840d5883af4e410cafe094bb0b0a5a46" Name="Diagrama1">
+        <EntityTypeShape EntityType="DBDidecoModel.Audiencias" Width="1.5" PointX="3" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBDidecoModel.Beneficiario" Width="1.5" PointX="0.75" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBDidecoModel.BeneficiosAmbientales" Width="1.5" PointX="3" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBDidecoModel.ContratosOperativa" Width="1.5" PointX="7.75" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBDidecoModel.DenunciasAmbientales" Width="1.5" PointX="3" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBDidecoModel.GastosContratosOperativa" Width="1.5" PointX="10" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBDidecoModel.Mantenciones" Width="1.5" PointX="10" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBDidecoModel.Personal" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBDidecoModel.SegurosComplementarios" Width="1.5" PointX="10" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBDidecoModel.Solicitudes" Width="1.5" PointX="5.25" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBDidecoModel.UsoVehiculos" Width="1.5" PointX="10" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBDidecoModel.Vehiculos" Width="1.5" PointX="7.75" PointY="4.875" IsExpanded="true" />
+        <AssociationConnector Association="DBDidecoModel.FK_Audiencias_Beneficiario" ManuallyRouted="false" />
+        <AssociationConnector Association="DBDidecoModel.FK_Solicitudes_Audiencias" ManuallyRouted="false" />
+        <AssociationConnector Association="DBDidecoModel.FK_BeneficiosAmbientales_Beneficiarios" ManuallyRouted="false" />
+        <AssociationConnector Association="DBDidecoModel.FK_DenunciasAmbientales_Beneficiarios" ManuallyRouted="false" />
+        <AssociationConnector Association="DBDidecoModel.FK_Solicitudes_Beneficiario" ManuallyRouted="false" />
+        <AssociationConnector Association="DBDidecoModel.FK_ContratosOperativa_GastosContratosOperativa" ManuallyRouted="false" />
+        <AssociationConnector Association="DBDidecoModel.FK_Vehiculos_Mantenciones" ManuallyRouted="false" />
+        <AssociationConnector Association="DBDidecoModel.FK_Solicitudes_Asistentes" ManuallyRouted="false" />
+        <AssociationConnector Association="DBDidecoModel.FK_Solicitudes_Personal" ManuallyRouted="false" />
+        <AssociationConnector Association="DBDidecoModel.FK_SegurosComplementarios_Vehiculos" ManuallyRouted="false" />
+        <AssociationConnector Association="DBDidecoModel.FK_Vehiculos_UsoVehiculos" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

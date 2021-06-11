@@ -1,0 +1,998 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DBDidecoModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="DBDidecoModelStoreContainer">
+          <EntitySet Name="Audiencias" EntityType="DBDidecoModel.Store.Audiencias" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Beneficiario" EntityType="DBDidecoModel.Store.Beneficiario" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="BeneficiosAmbientales" EntityType="DBDidecoModel.Store.BeneficiosAmbientales" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ContratosOperativa" EntityType="DBDidecoModel.Store.ContratosOperativa" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="DenunciasAmbientales" EntityType="DBDidecoModel.Store.DenunciasAmbientales" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="GastosContratosOperativa" EntityType="DBDidecoModel.Store.GastosContratosOperativa" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Mantenciones" EntityType="DBDidecoModel.Store.Mantenciones" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Personal" EntityType="DBDidecoModel.Store.Personal" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SegurosComplementarios" EntityType="DBDidecoModel.Store.SegurosComplementarios" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Solicitudes" EntityType="DBDidecoModel.Store.Solicitudes" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UsoVehiculos" EntityType="DBDidecoModel.Store.UsoVehiculos" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Vehiculos" EntityType="DBDidecoModel.Store.Vehiculos" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Audiencias_Beneficiario" Association="DBDidecoModel.Store.FK_Audiencias_Beneficiario">
+            <End Role="Beneficiario" EntitySet="Beneficiario" />
+            <End Role="Audiencias" EntitySet="Audiencias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BeneficiosAmbientales_Beneficiarios" Association="DBDidecoModel.Store.FK_BeneficiosAmbientales_Beneficiarios">
+            <End Role="Beneficiario" EntitySet="Beneficiario" />
+            <End Role="BeneficiosAmbientales" EntitySet="BeneficiosAmbientales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ContratosOperativa_GastosContratosOperativa" Association="DBDidecoModel.Store.FK_ContratosOperativa_GastosContratosOperativa">
+            <End Role="ContratosOperativa" EntitySet="ContratosOperativa" />
+            <End Role="GastosContratosOperativa" EntitySet="GastosContratosOperativa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DenunciasAmbientales_Beneficiarios" Association="DBDidecoModel.Store.FK_DenunciasAmbientales_Beneficiarios">
+            <End Role="Beneficiario" EntitySet="Beneficiario" />
+            <End Role="DenunciasAmbientales" EntitySet="DenunciasAmbientales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SegurosComplementarios_Vehiculos" Association="DBDidecoModel.Store.FK_SegurosComplementarios_Vehiculos">
+            <End Role="Vehiculos" EntitySet="Vehiculos" />
+            <End Role="SegurosComplementarios" EntitySet="SegurosComplementarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Solicitudes_Asistentes" Association="DBDidecoModel.Store.FK_Solicitudes_Asistentes">
+            <End Role="Personal" EntitySet="Personal" />
+            <End Role="Solicitudes" EntitySet="Solicitudes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Solicitudes_Audiencias" Association="DBDidecoModel.Store.FK_Solicitudes_Audiencias">
+            <End Role="Audiencias" EntitySet="Audiencias" />
+            <End Role="Solicitudes" EntitySet="Solicitudes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Solicitudes_Beneficiario" Association="DBDidecoModel.Store.FK_Solicitudes_Beneficiario">
+            <End Role="Beneficiario" EntitySet="Beneficiario" />
+            <End Role="Solicitudes" EntitySet="Solicitudes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Solicitudes_Personal" Association="DBDidecoModel.Store.FK_Solicitudes_Personal">
+            <End Role="Personal" EntitySet="Personal" />
+            <End Role="Solicitudes" EntitySet="Solicitudes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vehiculos_Mantenciones" Association="DBDidecoModel.Store.FK_Vehiculos_Mantenciones">
+            <End Role="Vehiculos" EntitySet="Vehiculos" />
+            <End Role="Mantenciones" EntitySet="Mantenciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vehiculos_UsoVehiculos" Association="DBDidecoModel.Store.FK_Vehiculos_UsoVehiculos">
+            <End Role="Vehiculos" EntitySet="Vehiculos" />
+            <End Role="UsoVehiculos" EntitySet="UsoVehiculos" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Audiencias">
+          <Key>
+            <PropertyRef Name="IdAudiencias" />
+          </Key>
+          <Property Name="IdAudiencias" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="RutBeneficiario" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="FechaAudiencia" Type="datetime" />
+          <Property Name="Solicitud" Type="nvarchar" MaxLength="500" />
+          <Property Name="Compromiso" Type="nvarchar" MaxLength="500" />
+          <Property Name="AtendidoPorAlcaldesa" Type="bit" />
+          <Property Name="Derivacion" Type="nvarchar" MaxLength="50" />
+          <Property Name="Solucion" Type="nvarchar" MaxLength="500" />
+          <Property Name="FechaSolucion" Type="date" />
+          <Property Name="FechaSolicitudAudiencia" Type="date" />
+          <Property Name="Estado" Type="nvarchar" MaxLength="50" />
+          <Property Name="FechaDerivacion" Type="date" />
+          <Property Name="IdDepto" Type="int" />
+          <Property Name="FechaAsignacion" Type="date" />
+          <Property Name="Tipo" Type="nvarchar" MaxLength="50" />
+          <Property Name="MontoEntregado" Type="int" />
+        </EntityType>
+        <EntityType Name="Beneficiario">
+          <Key>
+            <PropertyRef Name="Rut" />
+          </Key>
+          <Property Name="Rut" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Nombre" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Direccion" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="Contacto" Type="nvarchar" MaxLength="50" />
+          <Property Name="Localidad" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Genero" Type="nvarchar" MaxLength="50" />
+          <Property Name="FechaNacimiento" Type="date" />
+        </EntityType>
+        <EntityType Name="BeneficiosAmbientales">
+          <Key>
+            <PropertyRef Name="IdEntrega" />
+          </Key>
+          <Property Name="IdEntrega" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="RutBeneficiario" Type="nvarchar" MaxLength="50" />
+          <Property Name="Beneficio" Type="nvarchar" MaxLength="50" />
+          <Property Name="FechaEntrega" Type="date" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="250" />
+          <Property Name="FechaSolicitud" Type="date" />
+        </EntityType>
+        <EntityType Name="ContratosOperativa">
+          <Key>
+            <PropertyRef Name="IdContrato" />
+          </Key>
+          <Property Name="IdContrato" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Detalle" Type="nvarchar" Nullable="false" MaxLength="300" />
+          <Property Name="FechaInicio" Type="date" Nullable="false" />
+          <Property Name="FechaExpiracion" Type="date" Nullable="false" />
+          <Property Name="Monto" Type="int" />
+          <Property Name="Adjunto" Type="nvarchar" MaxLength="100" />
+          <Property Name="Estado" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="DenunciasAmbientales">
+          <Key>
+            <PropertyRef Name="IdDenuncia" />
+          </Key>
+          <Property Name="IdDenuncia" Type="int" Nullable="false" />
+          <Property Name="RutBeneficiario" Type="nvarchar" MaxLength="50" />
+          <Property Name="TipoDenuncia" Type="nvarchar" MaxLength="50" />
+          <Property Name="Latitud" Type="nvarchar" MaxLength="50" />
+          <Property Name="Longitud" Type="nvarchar" MaxLength="50" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="50" />
+          <Property Name="Derivacion" Type="nvarchar" MaxLength="50" />
+          <Property Name="FechaDerivacion" Type="date" />
+          <Property Name="Solucion" Type="nvarchar" MaxLength="50" />
+          <Property Name="FechaSolucion" Type="date" />
+        </EntityType>
+        <EntityType Name="GastosContratosOperativa">
+          <Key>
+            <PropertyRef Name="IdGastoContrato" />
+          </Key>
+          <Property Name="IdGastoContrato" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdContrato" Type="int" Nullable="false" />
+          <Property Name="Detalle" Type="nvarchar" MaxLength="100" />
+          <Property Name="Gasto" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Mantenciones">
+          <Key>
+            <PropertyRef Name="IdMantenciones" />
+          </Key>
+          <Property Name="IdMantenciones" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Placa" Type="nvarchar" Nullable="false" MaxLength="9" />
+          <Property Name="Fecha" Type="date" Nullable="false" />
+          <Property Name="Tipo" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Detalle" Type="nvarchar" MaxLength="300" />
+          <Property Name="Adjunto" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Personal">
+          <Key>
+            <PropertyRef Name="User" />
+          </Key>
+          <Property Name="User" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Pass" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Nombre" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Rol" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Correo" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="SegurosComplementarios">
+          <Key>
+            <PropertyRef Name="IdSeguro" />
+          </Key>
+          <Property Name="IdSeguro" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Placa" Type="nvarchar" MaxLength="9" />
+          <Property Name="FechaInicio" Type="date" />
+          <Property Name="FechaTermino" Type="date" />
+          <Property Name="Adjunto" Type="nvarchar" MaxLength="120" />
+        </EntityType>
+        <EntityType Name="Solicitudes">
+          <Key>
+            <PropertyRef Name="IdSolicitud" />
+          </Key>
+          <Property Name="IdSolicitud" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="RutBeneficiario" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="UserPersonal" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="FechaSolicitud" Type="date" />
+          <Property Name="DetallesCaso" Type="nvarchar" MaxLength="500" />
+          <Property Name="AprobacionAsistente" Type="nvarchar" MaxLength="50" />
+          <Property Name="FechaAprobacionAsistente" Type="date" />
+          <Property Name="AprobacionDirector" Type="nvarchar" MaxLength="50" />
+          <Property Name="FechaAprobacionDirector" Type="date" />
+          <Property Name="RegistroSocialHogar" Type="bit" />
+          <Property Name="Visita" Type="nvarchar" MaxLength="50" />
+          <Property Name="Asistente" Type="nvarchar" MaxLength="50" />
+          <Property Name="FechaVisita" Type="date" />
+          <Property Name="FolioAno" Type="int" />
+          <Property Name="Vivienda" Type="bit" />
+          <Property Name="Alimentacion" Type="bit" />
+          <Property Name="Salud" Type="bit" />
+          <Property Name="Infancia" Type="bit" />
+          <Property Name="Defunciones" Type="bit" />
+          <Property Name="Microemprendimiento" Type="bit" />
+          <Property Name="PSGubernamental" Type="bit" />
+          <Property Name="Maquinaria" Type="bit" />
+          <Property Name="PersonalMunicipal" Type="bit" />
+          <Property Name="RebajaAseo" Type="bit" />
+          <Property Name="EntregaAgua" Type="bit" />
+          <Property Name="Otros" Type="bit" />
+          <Property Name="PorcentajeRSH" Type="nvarchar" MaxLength="50" />
+          <Property Name="SituacionFamiliar" Type="nvarchar" />
+          <Property Name="IdAudiencia" Type="int" />
+          <Property Name="ObservacionDideco" Type="nvarchar" />
+        </EntityType>
+        <EntityType Name="UsoVehiculos">
+          <Key>
+            <PropertyRef Name="IdUsoVehiculos" />
+          </Key>
+          <Property Name="IdUsoVehiculos" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Placa" Type="nvarchar" Nullable="false" MaxLength="9" />
+          <Property Name="FechaUso" Type="date" Nullable="false" />
+          <Property Name="CantidadUso" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Vehiculos">
+          <Key>
+            <PropertyRef Name="Placa" />
+          </Key>
+          <Property Name="Placa" Type="nvarchar" Nullable="false" MaxLength="9" />
+          <Property Name="Marca" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Modelo" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Anno" Type="int" Nullable="false" />
+          <Property Name="Tipo" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="FechaRevision" Type="date" Nullable="false" />
+          <Property Name="ProximaMantencion" Type="int" Nullable="false" />
+          <Property Name="FechaPermiso" Type="date" />
+        </EntityType>
+        <Association Name="FK_Audiencias_Beneficiario">
+          <End Role="Beneficiario" Type="DBDidecoModel.Store.Beneficiario" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Audiencias" Type="DBDidecoModel.Store.Audiencias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Beneficiario">
+              <PropertyRef Name="Rut" />
+            </Principal>
+            <Dependent Role="Audiencias">
+              <PropertyRef Name="RutBeneficiario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BeneficiosAmbientales_Beneficiarios">
+          <End Role="Beneficiario" Type="DBDidecoModel.Store.Beneficiario" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="BeneficiosAmbientales" Type="DBDidecoModel.Store.BeneficiosAmbientales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Beneficiario">
+              <PropertyRef Name="Rut" />
+            </Principal>
+            <Dependent Role="BeneficiosAmbientales">
+              <PropertyRef Name="RutBeneficiario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ContratosOperativa_GastosContratosOperativa">
+          <End Role="ContratosOperativa" Type="DBDidecoModel.Store.ContratosOperativa" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="GastosContratosOperativa" Type="DBDidecoModel.Store.GastosContratosOperativa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ContratosOperativa">
+              <PropertyRef Name="IdContrato" />
+            </Principal>
+            <Dependent Role="GastosContratosOperativa">
+              <PropertyRef Name="IdContrato" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DenunciasAmbientales_Beneficiarios">
+          <End Role="Beneficiario" Type="DBDidecoModel.Store.Beneficiario" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DenunciasAmbientales" Type="DBDidecoModel.Store.DenunciasAmbientales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Beneficiario">
+              <PropertyRef Name="Rut" />
+            </Principal>
+            <Dependent Role="DenunciasAmbientales">
+              <PropertyRef Name="RutBeneficiario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SegurosComplementarios_Vehiculos">
+          <End Role="Vehiculos" Type="DBDidecoModel.Store.Vehiculos" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SegurosComplementarios" Type="DBDidecoModel.Store.SegurosComplementarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehiculos">
+              <PropertyRef Name="Placa" />
+            </Principal>
+            <Dependent Role="SegurosComplementarios">
+              <PropertyRef Name="Placa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Solicitudes_Asistentes">
+          <End Role="Personal" Type="DBDidecoModel.Store.Personal" Multiplicity="0..1" />
+          <End Role="Solicitudes" Type="DBDidecoModel.Store.Solicitudes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personal">
+              <PropertyRef Name="User" />
+            </Principal>
+            <Dependent Role="Solicitudes">
+              <PropertyRef Name="Asistente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Solicitudes_Audiencias">
+          <End Role="Audiencias" Type="DBDidecoModel.Store.Audiencias" Multiplicity="0..1" />
+          <End Role="Solicitudes" Type="DBDidecoModel.Store.Solicitudes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Audiencias">
+              <PropertyRef Name="IdAudiencias" />
+            </Principal>
+            <Dependent Role="Solicitudes">
+              <PropertyRef Name="IdAudiencia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Solicitudes_Beneficiario">
+          <End Role="Beneficiario" Type="DBDidecoModel.Store.Beneficiario" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Solicitudes" Type="DBDidecoModel.Store.Solicitudes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Beneficiario">
+              <PropertyRef Name="Rut" />
+            </Principal>
+            <Dependent Role="Solicitudes">
+              <PropertyRef Name="RutBeneficiario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Solicitudes_Personal">
+          <End Role="Personal" Type="DBDidecoModel.Store.Personal" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Solicitudes" Type="DBDidecoModel.Store.Solicitudes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personal">
+              <PropertyRef Name="User" />
+            </Principal>
+            <Dependent Role="Solicitudes">
+              <PropertyRef Name="UserPersonal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vehiculos_Mantenciones">
+          <End Role="Vehiculos" Type="DBDidecoModel.Store.Vehiculos" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Mantenciones" Type="DBDidecoModel.Store.Mantenciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehiculos">
+              <PropertyRef Name="Placa" />
+            </Principal>
+            <Dependent Role="Mantenciones">
+              <PropertyRef Name="Placa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vehiculos_UsoVehiculos">
+          <End Role="Vehiculos" Type="DBDidecoModel.Store.Vehiculos" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UsoVehiculos" Type="DBDidecoModel.Store.UsoVehiculos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehiculos">
+              <PropertyRef Name="Placa" />
+            </Principal>
+            <Dependent Role="UsoVehiculos">
+              <PropertyRef Name="Placa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DBDidecoModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="DBDidecoEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Audiencias" EntityType="DBDidecoModel.Audiencias" />
+          <EntitySet Name="Beneficiario" EntityType="DBDidecoModel.Beneficiario" />
+          <EntitySet Name="BeneficiosAmbientales" EntityType="DBDidecoModel.BeneficiosAmbientales" />
+          <EntitySet Name="ContratosOperativa" EntityType="DBDidecoModel.ContratosOperativa" />
+          <EntitySet Name="DenunciasAmbientales" EntityType="DBDidecoModel.DenunciasAmbientales" />
+          <EntitySet Name="GastosContratosOperativa" EntityType="DBDidecoModel.GastosContratosOperativa" />
+          <EntitySet Name="Mantenciones" EntityType="DBDidecoModel.Mantenciones" />
+          <EntitySet Name="Personal" EntityType="DBDidecoModel.Personal" />
+          <EntitySet Name="SegurosComplementarios" EntityType="DBDidecoModel.SegurosComplementarios" />
+          <EntitySet Name="Solicitudes" EntityType="DBDidecoModel.Solicitudes" />
+          <EntitySet Name="UsoVehiculos" EntityType="DBDidecoModel.UsoVehiculos" />
+          <EntitySet Name="Vehiculos" EntityType="DBDidecoModel.Vehiculos" />
+          <AssociationSet Name="FK_Audiencias_Beneficiario" Association="DBDidecoModel.FK_Audiencias_Beneficiario">
+            <End Role="Beneficiario" EntitySet="Beneficiario" />
+            <End Role="Audiencias" EntitySet="Audiencias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Solicitudes_Audiencias" Association="DBDidecoModel.FK_Solicitudes_Audiencias">
+            <End Role="Audiencias" EntitySet="Audiencias" />
+            <End Role="Solicitudes" EntitySet="Solicitudes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BeneficiosAmbientales_Beneficiarios" Association="DBDidecoModel.FK_BeneficiosAmbientales_Beneficiarios">
+            <End Role="Beneficiario" EntitySet="Beneficiario" />
+            <End Role="BeneficiosAmbientales" EntitySet="BeneficiosAmbientales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DenunciasAmbientales_Beneficiarios" Association="DBDidecoModel.FK_DenunciasAmbientales_Beneficiarios">
+            <End Role="Beneficiario" EntitySet="Beneficiario" />
+            <End Role="DenunciasAmbientales" EntitySet="DenunciasAmbientales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Solicitudes_Beneficiario" Association="DBDidecoModel.FK_Solicitudes_Beneficiario">
+            <End Role="Beneficiario" EntitySet="Beneficiario" />
+            <End Role="Solicitudes" EntitySet="Solicitudes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ContratosOperativa_GastosContratosOperativa" Association="DBDidecoModel.FK_ContratosOperativa_GastosContratosOperativa">
+            <End Role="ContratosOperativa" EntitySet="ContratosOperativa" />
+            <End Role="GastosContratosOperativa" EntitySet="GastosContratosOperativa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vehiculos_Mantenciones" Association="DBDidecoModel.FK_Vehiculos_Mantenciones">
+            <End Role="Vehiculos" EntitySet="Vehiculos" />
+            <End Role="Mantenciones" EntitySet="Mantenciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Solicitudes_Asistentes" Association="DBDidecoModel.FK_Solicitudes_Asistentes">
+            <End Role="Personal" EntitySet="Personal" />
+            <End Role="Solicitudes" EntitySet="Solicitudes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Solicitudes_Personal" Association="DBDidecoModel.FK_Solicitudes_Personal">
+            <End Role="Personal" EntitySet="Personal" />
+            <End Role="Solicitudes" EntitySet="Solicitudes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SegurosComplementarios_Vehiculos" Association="DBDidecoModel.FK_SegurosComplementarios_Vehiculos">
+            <End Role="Vehiculos" EntitySet="Vehiculos" />
+            <End Role="SegurosComplementarios" EntitySet="SegurosComplementarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vehiculos_UsoVehiculos" Association="DBDidecoModel.FK_Vehiculos_UsoVehiculos">
+            <End Role="Vehiculos" EntitySet="Vehiculos" />
+            <End Role="UsoVehiculos" EntitySet="UsoVehiculos" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Audiencias">
+          <Key>
+            <PropertyRef Name="IdAudiencias" />
+          </Key>
+          <Property Name="IdAudiencias" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="RutBeneficiario" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="FechaAudiencia" Type="DateTime" Precision="3" />
+          <Property Name="Solicitud" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="Compromiso" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="AtendidoPorAlcaldesa" Type="Boolean" />
+          <Property Name="Derivacion" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Solucion" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="FechaSolucion" Type="DateTime" Precision="0" />
+          <Property Name="FechaSolicitudAudiencia" Type="DateTime" Precision="0" />
+          <Property Name="Estado" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="FechaDerivacion" Type="DateTime" Precision="0" />
+          <Property Name="IdDepto" Type="Int32" />
+          <Property Name="FechaAsignacion" Type="DateTime" Precision="0" />
+          <Property Name="Tipo" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="MontoEntregado" Type="Int32" />
+          <NavigationProperty Name="Beneficiario" Relationship="DBDidecoModel.FK_Audiencias_Beneficiario" FromRole="Audiencias" ToRole="Beneficiario" />
+          <NavigationProperty Name="Solicitudes" Relationship="DBDidecoModel.FK_Solicitudes_Audiencias" FromRole="Audiencias" ToRole="Solicitudes" />
+        </EntityType>
+        <EntityType Name="Beneficiario">
+          <Key>
+            <PropertyRef Name="Rut" />
+          </Key>
+          <Property Name="Rut" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Direccion" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Contacto" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Localidad" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Genero" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="FechaNacimiento" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Audiencias" Relationship="DBDidecoModel.FK_Audiencias_Beneficiario" FromRole="Beneficiario" ToRole="Audiencias" />
+          <NavigationProperty Name="BeneficiosAmbientales" Relationship="DBDidecoModel.FK_BeneficiosAmbientales_Beneficiarios" FromRole="Beneficiario" ToRole="BeneficiosAmbientales" />
+          <NavigationProperty Name="DenunciasAmbientales" Relationship="DBDidecoModel.FK_DenunciasAmbientales_Beneficiarios" FromRole="Beneficiario" ToRole="DenunciasAmbientales" />
+          <NavigationProperty Name="Solicitudes" Relationship="DBDidecoModel.FK_Solicitudes_Beneficiario" FromRole="Beneficiario" ToRole="Solicitudes" />
+        </EntityType>
+        <EntityType Name="BeneficiosAmbientales">
+          <Key>
+            <PropertyRef Name="IdEntrega" />
+          </Key>
+          <Property Name="IdEntrega" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="RutBeneficiario" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Beneficio" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="FechaEntrega" Type="DateTime" Precision="0" />
+          <Property Name="Descripcion" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="FechaSolicitud" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Beneficiario" Relationship="DBDidecoModel.FK_BeneficiosAmbientales_Beneficiarios" FromRole="BeneficiosAmbientales" ToRole="Beneficiario" />
+        </EntityType>
+        <EntityType Name="ContratosOperativa">
+          <Key>
+            <PropertyRef Name="IdContrato" />
+          </Key>
+          <Property Name="IdContrato" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Detalle" Type="String" Nullable="false" MaxLength="300" Unicode="true" FixedLength="false" />
+          <Property Name="FechaInicio" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FechaExpiracion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Monto" Type="Int32" />
+          <Property Name="Adjunto" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Estado" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="GastosContratosOperativa" Relationship="DBDidecoModel.FK_ContratosOperativa_GastosContratosOperativa" FromRole="ContratosOperativa" ToRole="GastosContratosOperativa" />
+        </EntityType>
+        <EntityType Name="DenunciasAmbientales">
+          <Key>
+            <PropertyRef Name="IdDenuncia" />
+          </Key>
+          <Property Name="IdDenuncia" Type="Int32" Nullable="false" />
+          <Property Name="RutBeneficiario" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="TipoDenuncia" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Latitud" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Longitud" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Derivacion" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="FechaDerivacion" Type="DateTime" Precision="0" />
+          <Property Name="Solucion" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="FechaSolucion" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Beneficiario" Relationship="DBDidecoModel.FK_DenunciasAmbientales_Beneficiarios" FromRole="DenunciasAmbientales" ToRole="Beneficiario" />
+        </EntityType>
+        <EntityType Name="GastosContratosOperativa">
+          <Key>
+            <PropertyRef Name="IdGastoContrato" />
+          </Key>
+          <Property Name="IdGastoContrato" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="IdContrato" Type="Int32" Nullable="false" />
+          <Property Name="Detalle" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Gasto" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ContratosOperativa" Relationship="DBDidecoModel.FK_ContratosOperativa_GastosContratosOperativa" FromRole="GastosContratosOperativa" ToRole="ContratosOperativa" />
+        </EntityType>
+        <EntityType Name="Mantenciones">
+          <Key>
+            <PropertyRef Name="IdMantenciones" />
+          </Key>
+          <Property Name="IdMantenciones" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Placa" Type="String" Nullable="false" MaxLength="9" Unicode="true" FixedLength="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Tipo" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Detalle" Type="String" MaxLength="300" Unicode="true" FixedLength="false" />
+          <Property Name="Adjunto" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Vehiculos" Relationship="DBDidecoModel.FK_Vehiculos_Mantenciones" FromRole="Mantenciones" ToRole="Vehiculos" />
+        </EntityType>
+        <EntityType Name="Personal">
+          <Key>
+            <PropertyRef Name="User" />
+          </Key>
+          <Property Name="User" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Pass" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Rol" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Correo" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Solicitudes" Relationship="DBDidecoModel.FK_Solicitudes_Asistentes" FromRole="Personal" ToRole="Solicitudes" />
+          <NavigationProperty Name="Solicitudes1" Relationship="DBDidecoModel.FK_Solicitudes_Personal" FromRole="Personal" ToRole="Solicitudes" />
+        </EntityType>
+        <EntityType Name="SegurosComplementarios">
+          <Key>
+            <PropertyRef Name="IdSeguro" />
+          </Key>
+          <Property Name="IdSeguro" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Placa" Type="String" MaxLength="9" Unicode="true" FixedLength="false" />
+          <Property Name="FechaInicio" Type="DateTime" Precision="0" />
+          <Property Name="FechaTermino" Type="DateTime" Precision="0" />
+          <Property Name="Adjunto" Type="String" MaxLength="120" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Vehiculos" Relationship="DBDidecoModel.FK_SegurosComplementarios_Vehiculos" FromRole="SegurosComplementarios" ToRole="Vehiculos" />
+        </EntityType>
+        <EntityType Name="Solicitudes">
+          <Key>
+            <PropertyRef Name="IdSolicitud" />
+          </Key>
+          <Property Name="IdSolicitud" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="RutBeneficiario" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="UserPersonal" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="FechaSolicitud" Type="DateTime" Precision="0" />
+          <Property Name="DetallesCaso" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="AprobacionAsistente" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="FechaAprobacionAsistente" Type="DateTime" Precision="0" />
+          <Property Name="AprobacionDirector" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="FechaAprobacionDirector" Type="DateTime" Precision="0" />
+          <Property Name="RegistroSocialHogar" Type="Boolean" />
+          <Property Name="Visita" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Asistente" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="FechaVisita" Type="DateTime" Precision="0" />
+          <Property Name="FolioAno" Type="Int32" />
+          <Property Name="Vivienda" Type="Boolean" />
+          <Property Name="Alimentacion" Type="Boolean" />
+          <Property Name="Salud" Type="Boolean" />
+          <Property Name="Infancia" Type="Boolean" />
+          <Property Name="Defunciones" Type="Boolean" />
+          <Property Name="Microemprendimiento" Type="Boolean" />
+          <Property Name="PSGubernamental" Type="Boolean" />
+          <Property Name="Maquinaria" Type="Boolean" />
+          <Property Name="PersonalMunicipal" Type="Boolean" />
+          <Property Name="RebajaAseo" Type="Boolean" />
+          <Property Name="EntregaAgua" Type="Boolean" />
+          <Property Name="Otros" Type="Boolean" />
+          <Property Name="PorcentajeRSH" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="SituacionFamiliar" Type="String" MaxLength="4000" Unicode="true" FixedLength="false" />
+          <Property Name="IdAudiencia" Type="Int32" />
+          <Property Name="ObservacionDideco" Type="String" MaxLength="4000" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Audiencias" Relationship="DBDidecoModel.FK_Solicitudes_Audiencias" FromRole="Solicitudes" ToRole="Audiencias" />
+          <NavigationProperty Name="Beneficiario" Relationship="DBDidecoModel.FK_Solicitudes_Beneficiario" FromRole="Solicitudes" ToRole="Beneficiario" />
+          <NavigationProperty Name="Personal" Relationship="DBDidecoModel.FK_Solicitudes_Asistentes" FromRole="Solicitudes" ToRole="Personal" />
+          <NavigationProperty Name="Personal1" Relationship="DBDidecoModel.FK_Solicitudes_Personal" FromRole="Solicitudes" ToRole="Personal" />
+        </EntityType>
+        <EntityType Name="UsoVehiculos">
+          <Key>
+            <PropertyRef Name="IdUsoVehiculos" />
+          </Key>
+          <Property Name="IdUsoVehiculos" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Placa" Type="String" Nullable="false" MaxLength="9" Unicode="true" FixedLength="false" />
+          <Property Name="FechaUso" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CantidadUso" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Vehiculos" Relationship="DBDidecoModel.FK_Vehiculos_UsoVehiculos" FromRole="UsoVehiculos" ToRole="Vehiculos" />
+        </EntityType>
+        <EntityType Name="Vehiculos">
+          <Key>
+            <PropertyRef Name="Placa" />
+          </Key>
+          <Property Name="Placa" Type="String" Nullable="false" MaxLength="9" Unicode="true" FixedLength="false" />
+          <Property Name="Marca" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Modelo" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Anno" Type="Int32" Nullable="false" />
+          <Property Name="Tipo" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="FechaRevision" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ProximaMantencion" Type="Int32" Nullable="false" />
+          <Property Name="FechaPermiso" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Mantenciones" Relationship="DBDidecoModel.FK_Vehiculos_Mantenciones" FromRole="Vehiculos" ToRole="Mantenciones" />
+          <NavigationProperty Name="SegurosComplementarios" Relationship="DBDidecoModel.FK_SegurosComplementarios_Vehiculos" FromRole="Vehiculos" ToRole="SegurosComplementarios" />
+          <NavigationProperty Name="UsoVehiculos" Relationship="DBDidecoModel.FK_Vehiculos_UsoVehiculos" FromRole="Vehiculos" ToRole="UsoVehiculos" />
+        </EntityType>
+        <Association Name="FK_Audiencias_Beneficiario">
+          <End Role="Beneficiario" Type="DBDidecoModel.Beneficiario" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Audiencias" Type="DBDidecoModel.Audiencias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Beneficiario">
+              <PropertyRef Name="Rut" />
+            </Principal>
+            <Dependent Role="Audiencias">
+              <PropertyRef Name="RutBeneficiario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Solicitudes_Audiencias">
+          <End Role="Audiencias" Type="DBDidecoModel.Audiencias" Multiplicity="0..1" />
+          <End Role="Solicitudes" Type="DBDidecoModel.Solicitudes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Audiencias">
+              <PropertyRef Name="IdAudiencias" />
+            </Principal>
+            <Dependent Role="Solicitudes">
+              <PropertyRef Name="IdAudiencia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BeneficiosAmbientales_Beneficiarios">
+          <End Role="Beneficiario" Type="DBDidecoModel.Beneficiario" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="BeneficiosAmbientales" Type="DBDidecoModel.BeneficiosAmbientales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Beneficiario">
+              <PropertyRef Name="Rut" />
+            </Principal>
+            <Dependent Role="BeneficiosAmbientales">
+              <PropertyRef Name="RutBeneficiario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DenunciasAmbientales_Beneficiarios">
+          <End Role="Beneficiario" Type="DBDidecoModel.Beneficiario" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DenunciasAmbientales" Type="DBDidecoModel.DenunciasAmbientales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Beneficiario">
+              <PropertyRef Name="Rut" />
+            </Principal>
+            <Dependent Role="DenunciasAmbientales">
+              <PropertyRef Name="RutBeneficiario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Solicitudes_Beneficiario">
+          <End Role="Beneficiario" Type="DBDidecoModel.Beneficiario" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Solicitudes" Type="DBDidecoModel.Solicitudes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Beneficiario">
+              <PropertyRef Name="Rut" />
+            </Principal>
+            <Dependent Role="Solicitudes">
+              <PropertyRef Name="RutBeneficiario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ContratosOperativa_GastosContratosOperativa">
+          <End Role="ContratosOperativa" Type="DBDidecoModel.ContratosOperativa" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="GastosContratosOperativa" Type="DBDidecoModel.GastosContratosOperativa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ContratosOperativa">
+              <PropertyRef Name="IdContrato" />
+            </Principal>
+            <Dependent Role="GastosContratosOperativa">
+              <PropertyRef Name="IdContrato" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vehiculos_Mantenciones">
+          <End Role="Vehiculos" Type="DBDidecoModel.Vehiculos" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Mantenciones" Type="DBDidecoModel.Mantenciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehiculos">
+              <PropertyRef Name="Placa" />
+            </Principal>
+            <Dependent Role="Mantenciones">
+              <PropertyRef Name="Placa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Solicitudes_Asistentes">
+          <End Role="Personal" Type="DBDidecoModel.Personal" Multiplicity="0..1" />
+          <End Role="Solicitudes" Type="DBDidecoModel.Solicitudes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personal">
+              <PropertyRef Name="User" />
+            </Principal>
+            <Dependent Role="Solicitudes">
+              <PropertyRef Name="Asistente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Solicitudes_Personal">
+          <End Role="Personal" Type="DBDidecoModel.Personal" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Solicitudes" Type="DBDidecoModel.Solicitudes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personal">
+              <PropertyRef Name="User" />
+            </Principal>
+            <Dependent Role="Solicitudes">
+              <PropertyRef Name="UserPersonal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SegurosComplementarios_Vehiculos">
+          <End Role="Vehiculos" Type="DBDidecoModel.Vehiculos" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SegurosComplementarios" Type="DBDidecoModel.SegurosComplementarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehiculos">
+              <PropertyRef Name="Placa" />
+            </Principal>
+            <Dependent Role="SegurosComplementarios">
+              <PropertyRef Name="Placa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vehiculos_UsoVehiculos">
+          <End Role="Vehiculos" Type="DBDidecoModel.Vehiculos" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UsoVehiculos" Type="DBDidecoModel.UsoVehiculos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehiculos">
+              <PropertyRef Name="Placa" />
+            </Principal>
+            <Dependent Role="UsoVehiculos">
+              <PropertyRef Name="Placa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DBDidecoModelStoreContainer" CdmEntityContainer="DBDidecoEntities">
+          <EntitySetMapping Name="Audiencias">
+            <EntityTypeMapping TypeName="DBDidecoModel.Audiencias">
+              <MappingFragment StoreEntitySet="Audiencias">
+                <ScalarProperty Name="IdAudiencias" ColumnName="IdAudiencias" />
+                <ScalarProperty Name="RutBeneficiario" ColumnName="RutBeneficiario" />
+                <ScalarProperty Name="FechaAudiencia" ColumnName="FechaAudiencia" />
+                <ScalarProperty Name="Solicitud" ColumnName="Solicitud" />
+                <ScalarProperty Name="Compromiso" ColumnName="Compromiso" />
+                <ScalarProperty Name="AtendidoPorAlcaldesa" ColumnName="AtendidoPorAlcaldesa" />
+                <ScalarProperty Name="Derivacion" ColumnName="Derivacion" />
+                <ScalarProperty Name="Solucion" ColumnName="Solucion" />
+                <ScalarProperty Name="FechaSolucion" ColumnName="FechaSolucion" />
+                <ScalarProperty Name="FechaSolicitudAudiencia" ColumnName="FechaSolicitudAudiencia" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="FechaDerivacion" ColumnName="FechaDerivacion" />
+                <ScalarProperty Name="IdDepto" ColumnName="IdDepto" />
+                <ScalarProperty Name="FechaAsignacion" ColumnName="FechaAsignacion" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="MontoEntregado" ColumnName="MontoEntregado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Beneficiario">
+            <EntityTypeMapping TypeName="DBDidecoModel.Beneficiario">
+              <MappingFragment StoreEntitySet="Beneficiario">
+                <ScalarProperty Name="Rut" ColumnName="Rut" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Contacto" ColumnName="Contacto" />
+                <ScalarProperty Name="Localidad" ColumnName="Localidad" />
+                <ScalarProperty Name="Genero" ColumnName="Genero" />
+                <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BeneficiosAmbientales">
+            <EntityTypeMapping TypeName="DBDidecoModel.BeneficiosAmbientales">
+              <MappingFragment StoreEntitySet="BeneficiosAmbientales">
+                <ScalarProperty Name="IdEntrega" ColumnName="IdEntrega" />
+                <ScalarProperty Name="RutBeneficiario" ColumnName="RutBeneficiario" />
+                <ScalarProperty Name="Beneficio" ColumnName="Beneficio" />
+                <ScalarProperty Name="FechaEntrega" ColumnName="FechaEntrega" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="FechaSolicitud" ColumnName="FechaSolicitud" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ContratosOperativa">
+            <EntityTypeMapping TypeName="DBDidecoModel.ContratosOperativa">
+              <MappingFragment StoreEntitySet="ContratosOperativa">
+                <ScalarProperty Name="IdContrato" ColumnName="IdContrato" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Detalle" ColumnName="Detalle" />
+                <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
+                <ScalarProperty Name="FechaExpiracion" ColumnName="FechaExpiracion" />
+                <ScalarProperty Name="Monto" ColumnName="Monto" />
+                <ScalarProperty Name="Adjunto" ColumnName="Adjunto" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DenunciasAmbientales">
+            <EntityTypeMapping TypeName="DBDidecoModel.DenunciasAmbientales">
+              <MappingFragment StoreEntitySet="DenunciasAmbientales">
+                <ScalarProperty Name="IdDenuncia" ColumnName="IdDenuncia" />
+                <ScalarProperty Name="RutBeneficiario" ColumnName="RutBeneficiario" />
+                <ScalarProperty Name="TipoDenuncia" ColumnName="TipoDenuncia" />
+                <ScalarProperty Name="Latitud" ColumnName="Latitud" />
+                <ScalarProperty Name="Longitud" ColumnName="Longitud" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Derivacion" ColumnName="Derivacion" />
+                <ScalarProperty Name="FechaDerivacion" ColumnName="FechaDerivacion" />
+                <ScalarProperty Name="Solucion" ColumnName="Solucion" />
+                <ScalarProperty Name="FechaSolucion" ColumnName="FechaSolucion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GastosContratosOperativa">
+            <EntityTypeMapping TypeName="DBDidecoModel.GastosContratosOperativa">
+              <MappingFragment StoreEntitySet="GastosContratosOperativa">
+                <ScalarProperty Name="IdGastoContrato" ColumnName="IdGastoContrato" />
+                <ScalarProperty Name="IdContrato" ColumnName="IdContrato" />
+                <ScalarProperty Name="Detalle" ColumnName="Detalle" />
+                <ScalarProperty Name="Gasto" ColumnName="Gasto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mantenciones">
+            <EntityTypeMapping TypeName="DBDidecoModel.Mantenciones">
+              <MappingFragment StoreEntitySet="Mantenciones">
+                <ScalarProperty Name="IdMantenciones" ColumnName="IdMantenciones" />
+                <ScalarProperty Name="Placa" ColumnName="Placa" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Detalle" ColumnName="Detalle" />
+                <ScalarProperty Name="Adjunto" ColumnName="Adjunto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Personal">
+            <EntityTypeMapping TypeName="DBDidecoModel.Personal">
+              <MappingFragment StoreEntitySet="Personal">
+                <ScalarProperty Name="User" ColumnName="User" />
+                <ScalarProperty Name="Pass" ColumnName="Pass" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Rol" ColumnName="Rol" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SegurosComplementarios">
+            <EntityTypeMapping TypeName="DBDidecoModel.SegurosComplementarios">
+              <MappingFragment StoreEntitySet="SegurosComplementarios">
+                <ScalarProperty Name="IdSeguro" ColumnName="IdSeguro" />
+                <ScalarProperty Name="Placa" ColumnName="Placa" />
+                <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
+                <ScalarProperty Name="FechaTermino" ColumnName="FechaTermino" />
+                <ScalarProperty Name="Adjunto" ColumnName="Adjunto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Solicitudes">
+            <EntityTypeMapping TypeName="DBDidecoModel.Solicitudes">
+              <MappingFragment StoreEntitySet="Solicitudes">
+                <ScalarProperty Name="IdSolicitud" ColumnName="IdSolicitud" />
+                <ScalarProperty Name="RutBeneficiario" ColumnName="RutBeneficiario" />
+                <ScalarProperty Name="UserPersonal" ColumnName="UserPersonal" />
+                <ScalarProperty Name="FechaSolicitud" ColumnName="FechaSolicitud" />
+                <ScalarProperty Name="DetallesCaso" ColumnName="DetallesCaso" />
+                <ScalarProperty Name="AprobacionAsistente" ColumnName="AprobacionAsistente" />
+                <ScalarProperty Name="FechaAprobacionAsistente" ColumnName="FechaAprobacionAsistente" />
+                <ScalarProperty Name="AprobacionDirector" ColumnName="AprobacionDirector" />
+                <ScalarProperty Name="FechaAprobacionDirector" ColumnName="FechaAprobacionDirector" />
+                <ScalarProperty Name="RegistroSocialHogar" ColumnName="RegistroSocialHogar" />
+                <ScalarProperty Name="Visita" ColumnName="Visita" />
+                <ScalarProperty Name="Asistente" ColumnName="Asistente" />
+                <ScalarProperty Name="FechaVisita" ColumnName="FechaVisita" />
+                <ScalarProperty Name="FolioAno" ColumnName="FolioAno" />
+                <ScalarProperty Name="Vivienda" ColumnName="Vivienda" />
+                <ScalarProperty Name="Alimentacion" ColumnName="Alimentacion" />
+                <ScalarProperty Name="Salud" ColumnName="Salud" />
+                <ScalarProperty Name="Infancia" ColumnName="Infancia" />
+                <ScalarProperty Name="Defunciones" ColumnName="Defunciones" />
+                <ScalarProperty Name="Microemprendimiento" ColumnName="Microemprendimiento" />
+                <ScalarProperty Name="PSGubernamental" ColumnName="PSGubernamental" />
+                <ScalarProperty Name="Maquinaria" ColumnName="Maquinaria" />
+                <ScalarProperty Name="PersonalMunicipal" ColumnName="PersonalMunicipal" />
+                <ScalarProperty Name="RebajaAseo" ColumnName="RebajaAseo" />
+                <ScalarProperty Name="EntregaAgua" ColumnName="EntregaAgua" />
+                <ScalarProperty Name="Otros" ColumnName="Otros" />
+                <ScalarProperty Name="PorcentajeRSH" ColumnName="PorcentajeRSH" />
+                <ScalarProperty Name="SituacionFamiliar" ColumnName="SituacionFamiliar" />
+                <ScalarProperty Name="IdAudiencia" ColumnName="IdAudiencia" />
+                <ScalarProperty Name="ObservacionDideco" ColumnName="ObservacionDideco" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsoVehiculos">
+            <EntityTypeMapping TypeName="DBDidecoModel.UsoVehiculos">
+              <MappingFragment StoreEntitySet="UsoVehiculos">
+                <ScalarProperty Name="IdUsoVehiculos" ColumnName="IdUsoVehiculos" />
+                <ScalarProperty Name="Placa" ColumnName="Placa" />
+                <ScalarProperty Name="FechaUso" ColumnName="FechaUso" />
+                <ScalarProperty Name="CantidadUso" ColumnName="CantidadUso" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vehiculos">
+            <EntityTypeMapping TypeName="DBDidecoModel.Vehiculos">
+              <MappingFragment StoreEntitySet="Vehiculos">
+                <ScalarProperty Name="Placa" ColumnName="Placa" />
+                <ScalarProperty Name="Marca" ColumnName="Marca" />
+                <ScalarProperty Name="Modelo" ColumnName="Modelo" />
+                <ScalarProperty Name="Anno" ColumnName="Anno" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="FechaRevision" ColumnName="FechaRevision" />
+                <ScalarProperty Name="ProximaMantencion" ColumnName="ProximaMantencion" />
+                <ScalarProperty Name="FechaPermiso" ColumnName="FechaPermiso" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Predeterminado" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
